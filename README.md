@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InsightEngine 🔍
+
+**AI SEO Analyzer** - Analyze your website's readiness for AI-powered search engines.
+
+## Overview
+
+InsightEngine helps you optimize your website for the new era of AI search - ChatGPT, Perplexity, Google AI Overviews, and more. Get actionable recommendations based on 5 key analysis categories.
+
+## Tech Stack
+
+- **Frontend**: Next.js 15 (React, TypeScript)
+- **Backend**: Python (FastAPI)
+- **AI**: Google Gemini API
+
+## Project Structure
+
+```
+insight-engine/
+├── src/                    # Next.js Frontend
+│   └── app/
+│       ├── page.tsx        # Landing page
+│       ├── layout.tsx      # Root layout
+│       ├── globals.css     # Premium dark theme
+│       └── analyze/        # Results page (TBD)
+├── backend/                # Python Backend
+│   ├── main.py             # FastAPI app
+│   ├── requirements.txt    # Python deps
+│   └── app/
+│       ├── api/
+│       │   └── routes.py   # API endpoints
+│       └── analyzers/      # Analysis modules
+│           ├── robots_analyzer.py
+│           ├── schema_analyzer.py
+│           ├── content_analyzer.py
+│           ├── technical_analyzer.py
+│           └── llms_txt_analyzer.py
+├── package.json
+└── README.md
+```
+
+## Analysis Categories
+
+| Category | Weight | What We Check |
+|----------|--------|---------------|
+| **AI Crawler Access** | 25% | robots.txt for GPTBot, ClaudeBot, PerplexityBot |
+| **Structured Data** | 25% | JSON-LD schema markup |
+| **Content Structure** | 25% | Headings, FAQs, answer-first patterns |
+| **Technical SEO** | 15% | Meta tags, SSR, semantic HTML |
+| **llms.txt** | 10% | Emerging AI instruction standard |
 
 ## Getting Started
 
-First, run the development server:
+### Backend (Python)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend (Next.js)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-## Learn More
+## API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+- `POST /api/analyze` - Analyze a URL
+- `GET /api/health` - Health check
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a `.env` file in `backend/`:
 
-## Deploy on Vercel
+```
+GEMINI_API_KEY=your_gemini_api_key
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
+
+---
+
+Built for the AI-first web 🚀
